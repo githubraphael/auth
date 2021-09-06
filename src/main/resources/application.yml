@@ -1,0 +1,27 @@
+spring:
+  main:
+    allow-bean-definition-overriding: true
+  application:
+    name: user
+  autoconfigure:
+    exclude: org.springframework.boot.autoconfigure.security.servlet.SecurityAutoConfiguration
+  data:
+    mongodb:
+      uri: mongodb://localhost:27017/phiz_db?authSource=admin&readPreference=primary
+user:
+  timezone: UTC
+server:
+  port: 7001
+  servlet:
+    context-path: /api/auth
+
+twillo:
+  account_sid:
+  auth_token:
+  msg_sid:
+
+otp:
+  expires: 5
+
+jwt:
+  secret: phiz_live
