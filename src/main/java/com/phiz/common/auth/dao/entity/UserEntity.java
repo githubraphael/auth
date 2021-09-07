@@ -37,6 +37,7 @@ public class UserEntity {
     private Name name;
     private Address address;
     private Device device;
+    private String resetToken;
 
     @CreatedDate
     private Instant created;

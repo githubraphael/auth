@@ -25,7 +25,7 @@ public class UserServiceImpl implements UserService {
     private final PasswordEncoder passwordEncoder;
 
     @Override
-    public User register(User userData) {
+    public User saveUser(User userData) {
 
         User user = new User();
         try {
@@ -64,6 +64,17 @@ public class UserServiceImpl implements UserService {
 
         userRepository.save(userEntity);
 
+        return mapper.toUserData(userEntity);
+    }
+
+    @Override
+    public User getUserByResetToken(String resetToken) {
+
+        UserEntity userEntity = userRepository.findByResetToken(resetToken);
+
+        if (Objects.isNull(userEntity)) {
+            throw new PhizException.Builder(resetToken + " not found").withStatus(HttpStatus.NOT_FOUND).build();
+        }
         return mapper.toUserData(userEntity);
     }
 }
